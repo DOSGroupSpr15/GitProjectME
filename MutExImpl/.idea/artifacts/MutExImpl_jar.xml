@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="MutExImpl:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/MutExImpl_jar</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/MutExImpl</output-path>
     <root id="archive" name="MutExImpl.jar">
       <element id="module-output" name="MutExImpl" />
     </root>

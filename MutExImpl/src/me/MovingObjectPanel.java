@@ -43,6 +43,9 @@ public class MovingObjectPanel extends JPanel{
         repaint();
     }
 
+    public void addBall(Ball2D b){
+        ball_list.add(b);
+    }
 
     public static void main(String[] arg){
 
@@ -68,7 +71,5 @@ public class MovingObjectPanel extends JPanel{
             }
         }
     }
-    public void addBall(Ball2D b){
-        ball_list.add(b);
-    }
+
 }
