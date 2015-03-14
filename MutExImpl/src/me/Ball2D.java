@@ -12,13 +12,15 @@ public class Ball2D{
     Color c;
     int valX;
     int valY;
-    public Ball2D(int x, int y, int rad, Color c, int valX, int valY) {
+    String name;
+    public Ball2D(int x, int y, int rad, Color c, int valX, int valY,String name) {
         this.x=x;
         this.y=y;
         this.rad=rad;
         this.c=c;
         this.valX=valX;
         this.valY=valY;
+        this.name=name;
     }
 
     public void incX(int maxWidth){
