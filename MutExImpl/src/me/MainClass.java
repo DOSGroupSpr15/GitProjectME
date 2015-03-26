@@ -5,6 +5,8 @@ import java.awt.*;
 import com.jtattoo.plaf.mint.MintLookAndFeel;
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import com.jtattoo.plaf.luna.LunaLookAndFeel;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 /**
  * Created by azhar on 3/15/15.
  */
@@ -39,7 +41,7 @@ public class MainClass {
 
         try {
             // select Look and Feel
-            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 
             // start application
 
@@ -47,7 +49,7 @@ public class MainClass {
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
 
 
         ControlPanel controlPanel= new ControlPanel();
