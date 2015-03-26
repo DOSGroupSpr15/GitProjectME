@@ -35,7 +35,7 @@ public class MainClass {
         fr.setTitle("Timed moving obj");
 
 
-
+/*
 
         try {
             // select Look and Feel
@@ -48,10 +48,11 @@ public class MainClass {
             ex.printStackTrace();
         }
 
-
+    */
 
         ControlPanel controlPanel= new ControlPanel();
         controlPanel.setVisible(true);
+        controlPanel.setResizable(false);
         /*
         JFrame control_frame = new JFrame();
         control_frame.setSize(400, 200);

@@ -9,6 +9,11 @@ public class Person {
     public static final short DIRECTION_LEFT=0;
     public static final short DIRECTION_RIGHT=1;
 
+    public static final short RED_PERSON=0;
+    public static final short BLUE_PERSON=1;
+    public static final short GREEN_PERSON=2;
+    public static final short ORANGE_PERSON=3;
+
     int x;
     int y;
     int rad;
