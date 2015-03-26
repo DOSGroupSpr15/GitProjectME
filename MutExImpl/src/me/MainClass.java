@@ -2,7 +2,6 @@ package me;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.ResultSetMetaData;
 
 /**
  * Created by azhar on 3/15/15.
@@ -12,15 +11,16 @@ public class MainClass {
     static boolean resume=false;
     public static void main(String[] arg){
 
+
         int initial_Base_x=100;
         int initial_Base_y=130;
 
-        final MovingObjectPanel obj = new MovingObjectPanel();
-        Ball2D b_red=new Ball2D(initial_Base_x, initial_Base_y, 80, Color.red, 5, 5,"R",Ball2D.DIRECTION_LEFT);
-        Ball2D b_blue=new Ball2D(initial_Base_x, initial_Base_y+340-80, 80, Color.blue, 5, 10,"B",Ball2D.DIRECTION_LEFT);
+        final AnimationPanel obj = new AnimationPanel();
+        Person b_red=new Person(initial_Base_x, initial_Base_y, 80, Color.red, 5, 5,"R", Person.DIRECTION_LEFT);
+        Person b_blue=new Person(initial_Base_x, initial_Base_y+340-80, 80, Color.blue, 5, 10,"B", Person.DIRECTION_LEFT);
 
-        Ball2D b_green=new Ball2D(initial_Base_x+200+600+200-80, initial_Base_y, 80, Color.GREEN, 5, 5,"G",Ball2D.DIRECTION_RIGHT);
-        Ball2D b_orange=new Ball2D(initial_Base_x+200+600+200-80, initial_Base_y+340-80, 80, Color.ORANGE, 5, 10,"O",Ball2D.DIRECTION_RIGHT);
+        Person b_green=new Person(initial_Base_x+200+600+200-80, initial_Base_y, 80, Color.GREEN, 5, 5,"G", Person.DIRECTION_RIGHT);
+        Person b_orange=new Person(initial_Base_x+200+600+200-80, initial_Base_y+340-80, 80, Color.ORANGE, 5, 10,"O", Person.DIRECTION_RIGHT);
 
         obj.addBall(b_red);
         obj.addBall(b_blue);
@@ -33,6 +33,21 @@ public class MainClass {
         fr.setSize(1200,600);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setTitle("Timed moving obj");
+
+
+
+
+        try {
+            // select Look and Feel
+            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+
+            // start application
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
 
 
         ControlPanel controlPanel= new ControlPanel();
@@ -87,7 +102,7 @@ public class MainClass {
     */
     }
 
-    private static void ActivateBtnActionPerformed(java.awt.event.ActionEvent evt, MovingObjectPanel obj) {
+    private static void ActivateBtnActionPerformed(java.awt.event.ActionEvent evt, AnimationPanel obj) {
         // TODO add your handling code here:
         resume= resume?false:true;
     }

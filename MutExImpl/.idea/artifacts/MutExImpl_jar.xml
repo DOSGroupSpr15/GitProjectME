@@ -1,8 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="MutExImpl:jar">
+  <artifact type="jar" name="MutExImpl:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/MutExImpl</output-path>
     <root id="archive" name="MutExImpl.jar">
       <element id="module-output" name="MutExImpl" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JTattoo-1.6.11.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
