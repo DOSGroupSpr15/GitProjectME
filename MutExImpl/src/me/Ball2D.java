@@ -6,6 +6,9 @@ import java.awt.*;
  * Created by azhar on 3/13/15.
  */
 public class Ball2D{
+    public static final short DIRECTION_LEFT=0;
+    public static final short DIRECTION_RIGHT=1;
+
     int x;
     int y;
     int rad;
@@ -13,7 +16,9 @@ public class Ball2D{
     int valX;
     int valY;
     String name;
-    public Ball2D(int x, int y, int rad, Color c, int valX, int valY,String name) {
+    boolean isMoving=false;
+    private short direction;
+    public Ball2D(int x, int y, int rad, Color c, int valX, int valY,String name,short direction) {
         this.x=x;
         this.y=y;
         this.rad=rad;
@@ -21,6 +26,7 @@ public class Ball2D{
         this.valX=valX;
         this.valY=valY;
         this.name=name;
+        this.direction=direction;
     }
 
     public void incX(int maxWidth){
@@ -52,5 +58,19 @@ public class Ball2D{
         }
         y+=valY;
     }
-
+    public boolean isMoving(){
+        return isMoving;
+    }
+    public void start(){
+        isMoving = true;
+    }
+    public void stop(){
+        isMoving=false;
+    }
+    private void toggleDirection(){
+        direction=(short)(1-direction);
+    }
+    private short getDirection(){
+        return this.direction;
+    }
 }
