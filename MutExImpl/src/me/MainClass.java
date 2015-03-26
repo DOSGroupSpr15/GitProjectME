@@ -36,7 +36,7 @@ public class MainClass {
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setTitle("Timed moving obj");
 
-        /*
+
         try {
             // select Look and Feel
             UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -47,7 +47,7 @@ public class MainClass {
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        */
+        
 
 
         ControlPanel controlPanel= new ControlPanel();
