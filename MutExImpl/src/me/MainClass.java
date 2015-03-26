@@ -2,7 +2,9 @@ package me;
 
 import javax.swing.*;
 import java.awt.*;
-
+import com.jtattoo.plaf.mint.MintLookAndFeel;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 /**
  * Created by azhar on 3/15/15.
  */
@@ -34,9 +36,7 @@ public class MainClass {
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setTitle("Timed moving obj");
 
-
-/*
-
+        /*
         try {
             // select Look and Feel
             UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -47,8 +47,8 @@ public class MainClass {
         catch (Exception ex) {
             ex.printStackTrace();
         }
+        */
 
-    */
 
         ControlPanel controlPanel= new ControlPanel();
         controlPanel.setVisible(true);

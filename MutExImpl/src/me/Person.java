@@ -23,6 +23,10 @@ public class Person {
     String name;
     boolean isMoving=false;
     private short direction;
+
+    boolean _try;
+    boolean _want;
+    boolean _in;
     public Person(int x, int y, int rad, Color c, int valX, int valY, String name, short direction) {
         this.x=x;
         this.y=y;
@@ -32,6 +36,8 @@ public class Person {
         this.valY=valY;
         this.name=name;
         this.direction=direction;
+
+        _try = _want = _in=false;
     }
 
     public void incX(int maxWidth){
@@ -63,6 +69,12 @@ public class Person {
         }
         y+=valY;
     }
+
+    public void mutexRA(){
+
+    }
+
+
     public boolean isMoving(){
         return isMoving;
     }
