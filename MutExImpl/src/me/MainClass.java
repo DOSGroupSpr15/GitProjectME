@@ -16,6 +16,18 @@ public class MainClass {
     public static void main(String[] arg){
 
 
+        try {
+            // select Look and Feel
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+
+            // start application
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
         int initial_Base_x=100;
         int initial_Base_y=130;
 
@@ -38,17 +50,6 @@ public class MainClass {
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setTitle("Timed moving obj");
 
-
-        try {
-            // select Look and Feel
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-
-            // start application
-
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
 
 
 
