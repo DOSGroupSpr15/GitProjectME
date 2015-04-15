@@ -6,13 +6,7 @@ import java.awt.*;
  * Created by azhar on 3/13/15.
  */
 public class Person {
-    public static final short DIRECTION_LEFT=0;
-    public static final short DIRECTION_RIGHT=1;
 
-    public static final short RED_PERSON=0;
-    public static final short BLUE_PERSON=1;
-    public static final short GREEN_PERSON=2;
-    public static final short ORANGE_PERSON=3;
 
     int x;
     int y;
@@ -24,9 +18,20 @@ public class Person {
     boolean isMoving=false;
     private short direction;
 
+
+    // R&A parameters starts
     boolean _try;
     boolean _want;
     boolean _in;
+
+    long t;
+
+    boolean A[];
+
+    int N;
+    // R&A parameters ends
+
+
     public Person(int x, int y, int rad, Color c, int valX, int valY, String name, short direction) {
         this.x=x;
         this.y=y;
@@ -38,6 +43,13 @@ public class Person {
         this.direction=direction;
 
         _try = _want = _in=false;
+
+        A=new boolean[4];
+        for (int i=0;i<A.length;i++){
+            A[i]=false;
+        }
+
+        N=0;
     }
 
     public void incX(int maxWidth){

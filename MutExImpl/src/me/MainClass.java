@@ -32,11 +32,11 @@ public class MainClass {
         int initial_Base_y=130;
 
         final AnimationPanel obj = new AnimationPanel();
-        Person b_red=new Person(initial_Base_x, initial_Base_y, 80, Color.red, 5, 5,"R", Person.DIRECTION_LEFT);
-        Person b_blue=new Person(initial_Base_x, initial_Base_y+340-80, 80, Color.blue, 5, 10,"B", Person.DIRECTION_LEFT);
+        Person b_red=new Person(initial_Base_x, initial_Base_y, 80, Color.red, 5, 5,"R", Constants.DIRECTION_LEFT);
+        Person b_blue=new Person(initial_Base_x, initial_Base_y+340-80, 80, Color.blue, 5, 10,"B", Constants.DIRECTION_LEFT);
 
-        Person b_green=new Person(initial_Base_x+200+600+200-80, initial_Base_y, 80, Color.GREEN, 5, 5,"G", Person.DIRECTION_RIGHT);
-        Person b_orange=new Person(initial_Base_x+200+600+200-80, initial_Base_y+340-80, 80, Color.ORANGE, 5, 10,"O", Person.DIRECTION_RIGHT);
+        Person b_green=new Person(initial_Base_x+200+600+200-80, initial_Base_y, 80, Color.GREEN, 5, 5,"G", Constants.DIRECTION_RIGHT);
+        Person b_orange=new Person(initial_Base_x+200+600+200-80, initial_Base_y+340-80, 80, Color.ORANGE, 5, 10,"O", Constants.DIRECTION_RIGHT);
 
         obj.addBall(b_red);
         obj.addBall(b_blue);
