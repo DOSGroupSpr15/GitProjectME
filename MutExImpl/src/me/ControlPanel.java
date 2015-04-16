@@ -246,6 +246,8 @@ public class ControlPanel extends javax.swing.JFrame {
 
     private void jButton_OkMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
+        System.out.println("Hello world!");
+
     }
 
     /**

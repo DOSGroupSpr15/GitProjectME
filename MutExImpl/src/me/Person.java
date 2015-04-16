@@ -85,7 +85,10 @@ public class Person {
     public void mutexRA(){
 
     }
+    public void send(){
 
+        //implement all the sending things
+    }
 
     public boolean isMoving(){
         return isMoving;

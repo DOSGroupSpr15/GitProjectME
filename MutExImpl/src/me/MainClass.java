@@ -80,8 +80,11 @@ public class MainClass {
             }
         });
     */
+
+        //obj.move(true);
+        /*
         while(true){
-            obj.move(resume);
+            obj.move(true);
 
             try {
                 Thread.sleep(50);

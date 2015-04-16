@@ -12,12 +12,14 @@ import javax.swing.*;
 
 public class AnimationPanel extends JPanel{
 
-    ArrayList<Person> ball_list;
+    ArrayList<Person> person_list;
 
 
+    AnimationPanel obj;
     public AnimationPanel(){
 
-        this.ball_list= new ArrayList();
+        this.person_list = new ArrayList();
+        obj=this;
     }
     public void paint(Graphics g){
         super.paintComponent(g);
@@ -41,7 +43,7 @@ public class AnimationPanel extends JPanel{
 
 
         //drawing the persons
-        for(Person ball:ball_list){
+        for(Person ball: person_list){
             g.setColor(ball.c);
             Ellipse2D circle = new Ellipse2D.Double(ball.x,ball.y,ball.rad,ball.rad);
             g2.fill(circle);
@@ -53,18 +55,41 @@ public class AnimationPanel extends JPanel{
     }
     public void move(boolean resume){
 
+        new Thread() {
+            @Override
+            public void run() {
+
+                while(true){
+
+                    for(Person b: obj.person_list){
+                        b.incX(obj.getWidth());
+                        b.incY(obj.getHeight());
+                    }
+                    obj.repaint();
+
+                    try {
+                        Thread.sleep(50);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }.start();
+
+
+        /*
         if(resume){
-            for(Person b: ball_list){
+            for(Person b: person_list){
                 b.incX(this.getWidth());
                 b.incY(this.getHeight());
             }
             repaint();
         }
 
+        */
     }
 
     public void addBall(Person b){
-        ball_list.add(b);
+        person_list.add(b);
     }
 
 }
