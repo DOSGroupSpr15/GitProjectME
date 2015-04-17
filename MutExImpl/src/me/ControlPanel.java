@@ -14,9 +14,11 @@ public class ControlPanel extends javax.swing.JFrame {
     /**
      * Creates new form ControlPanel
      */
+    AnimationPanel animationPanel;
     private static String selectedPersonName[]={"selected person is: RED => ","selected person is: BLUE => ","selected person is: GREEN => ","selected person is: ORANGE => "};
-    public ControlPanel() {
+    public ControlPanel(AnimationPanel obj) {
         initComponents();
+        animationPanel=obj;
     }
 
     /**
@@ -36,7 +38,7 @@ public class ControlPanel extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jSlider_Speed = new javax.swing.JSlider();
         jPanel5 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox_modes = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jButton_Clear = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -126,8 +128,8 @@ public class ControlPanel extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Mode", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 13))); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Concurrent" }));
+        jComboBox_modes.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
+        jComboBox_modes.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Normal", "Concurrent"}));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -135,13 +137,13 @@ public class ControlPanel extends javax.swing.JFrame {
                 jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox_modes, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
                 jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox_modes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
@@ -236,18 +238,30 @@ public class ControlPanel extends javax.swing.JFrame {
 
     private void jSlider_SpeedMouseReleased(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        String value= jTextArea_Status.getText();
-        if(value==null)
-            value="";
-        int index=jComboBox_Persons.getSelectedIndex();
-        value=value+selectedPersonName[index]+"Speed:"+jSlider_Speed.getValue()+"\n";
-        jTextArea_Status.setText(value);
+
+        writeToResultArea(selectedPersonName[jComboBox_Persons.getSelectedIndex()]+"Speed:"+jSlider_Speed.getValue());
     }
 
     private void jButton_OkMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        System.out.println("Hello world!");
+        //System.out.println("Hello world!");
+        int index=jComboBox_Persons.getSelectedIndex();
+        boolean canRequest=animationPanel.getPerson(index).sendReq();
 
+        if (canRequest){
+            writeToResultArea("Request has been scheduled for person "+Constants.PERSON_NAMES[index]);
+
+        }else {
+            writeToResultArea("Request could not be scheduled for person "+Constants.PERSON_NAMES[index]);
+        }
+
+    }
+    private void writeToResultArea(String result){
+        String value= jTextArea_Status.getText();
+        if(value==null)
+            value="";
+        value=value+result+"\n";
+        jTextArea_Status.setText(value);
     }
 
     /**
@@ -257,7 +271,7 @@ public class ControlPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton_Clear;
     private javax.swing.JButton jButton_Ok;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox_modes;
     private javax.swing.JComboBox jComboBox_Persons;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

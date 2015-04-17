@@ -88,8 +88,11 @@ public class AnimationPanel extends JPanel{
         */
     }
 
-    public void addBall(Person b){
+    public void addPerson(Person b){
         person_list.add(b);
+    }
+    public Person getPerson(int index){
+        return person_list.get(index);
     }
 
 }
