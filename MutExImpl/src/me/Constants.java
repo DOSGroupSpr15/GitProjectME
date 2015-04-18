@@ -22,10 +22,11 @@ public class Constants {
 
     //listening ports for server sockets
     public static final int[] LISTENING_PORTS= {8833,8835,8837,8839};
-    public static final String localhost="localhost";
+    public static final String serverIP ="localHost";
 
     //person names
     public static final String[] PERSON_NAMES={"RED","BLUE","GREEN","ORANGE"};
+    public static final String[] MESSAGE_TYPE={"REQUEST","ACK"};
 
 
 }

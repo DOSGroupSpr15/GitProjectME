@@ -60,11 +60,12 @@ public class AnimationPanel extends JPanel{
             public void run() {
 
                 while(true){
-
+                    /*
                     for(Person b: obj.person_list){
                         b.incX(obj.getWidth());
                         b.incY(obj.getHeight());
                     }
+                    */
                     obj.repaint();
 
                     try {

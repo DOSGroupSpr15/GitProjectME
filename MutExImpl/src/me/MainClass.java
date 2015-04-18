@@ -77,7 +77,7 @@ public class MainClass {
         });
     */
 
-        //obj.move(true);
+        obj.move(true);
         /*
         while(true){
             obj.move(true);
