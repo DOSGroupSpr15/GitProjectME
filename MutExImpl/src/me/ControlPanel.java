@@ -240,6 +240,7 @@ public class ControlPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         writeToResultArea(selectedPersonName[jComboBox_Persons.getSelectedIndex()]+"Speed:"+jSlider_Speed.getValue());
+        animationPanel.getPerson(jComboBox_Persons.getSelectedIndex()).velocity =jSlider_Speed.getValue();
     }
 
     private void jButton_OkMouseClicked(java.awt.event.MouseEvent evt) {
