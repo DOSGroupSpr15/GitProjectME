@@ -5,6 +5,8 @@
  */
 package me;
 
+import javax.tools.JavaCompiler;
+
 /**
  *
  * @author azhar
@@ -68,6 +70,13 @@ public class ControlPanel extends javax.swing.JFrame {
                                 .addComponent(jComboBox_Persons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 61, Short.MAX_VALUE))
         );
+        jComboBox_Persons.addItemListener(new java.awt.event.ItemListener() {
+            @Override
+            public void itemStateChanged(java.awt.event.ItemEvent e) {
+                adjustSliderSpeed();
+            }
+        });
+
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Schedule", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 13))); // NOI18N
 
@@ -265,6 +274,9 @@ public class ControlPanel extends javax.swing.JFrame {
         jTextArea_Status.setText(value);
     }
 
+    private void adjustSliderSpeed(){
+        jSlider_Speed.setValue(animationPanel.getPerson(jComboBox_Persons.getSelectedIndex()).velocity);
+    }
     /**
      * @param args the command line arguments
      */
