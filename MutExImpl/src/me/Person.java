@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Random;
 
 /**
  * Created by azhar on 3/13/15.
@@ -25,6 +26,9 @@ public class Person {
     private short direction;
     private int n;
     private int parking_spot;
+
+    Random random=null;
+
 
 
     // R&A parameters starts
@@ -56,6 +60,7 @@ public class Person {
         this.name=name;
         this.direction=direction;
         this.parking_spot=parking_spot;
+        this.random=new Random();
 
         if (this.direction==Constants.DIRECTION_LEFT){
             Constants.LEFT_PARKING_SPOTS[this.parking_spot]=true;
@@ -78,28 +83,30 @@ public class Person {
         myself=this;
 
         receive();
+        movePersonInCity();
 
     }
 
-    public void incX(int maxWidth){
-        /*
-        if(x>=0 && x<=(maxWidth-rad)){
-            x+=velocity;
-        }
-                */
+    public void changeX(int sign){
 
-        if(x<=0){
-            velocity = velocity <0?(-velocity): velocity;
-        }else if(x>=maxWidth-rad){
-            velocity = velocity >0?(-velocity): velocity;
-        }
-        x+= velocity;
+        x= x+ sign*velocity;
+        if(x<100)
+            x=100;
+        else if (x>1020)
+            x=1020;
+    }
+
+    public void changeY(int sign){
+
+        y= y+ sign*velocity;
+
+        if (y<130)
+            y=130;
+        else if (y>390)
+            y=390;
     }
 
 
-    public void mutexRA(){
-
-    }
 
     public boolean sendReq(){
 
@@ -161,6 +168,7 @@ public class Person {
 
                         }else if (m.type==Constants.ACK){
                             N++;
+
                             if (N==(n-1)){
                                 //now can enter the critical section
 
@@ -171,12 +179,22 @@ public class Person {
 
                                         _in = true;
                                         // critical section begins
-                                        freeParkingSpot();
+                                        //freeParkingSpot();
                                         if (direction==Constants.DIRECTION_LEFT){
                                             x=Constants.LEFT_START[0];
                                             y=Constants.LEFT_START[1];
+
+                                            while (x<1020){
+                                                changeX(1);
+                                                try {
+                                                    Thread.sleep(100);
+                                                }catch (Exception ex){
+
+                                                }
+                                            }
+                                            /*
                                             while (x<Constants.RIGHT_END[0]){
-                                                //incX(1200);
+                                                //changeX(1200);
                                                 x+= velocity;
                                                 try {
                                                     Thread.sleep(100);
@@ -184,12 +202,22 @@ public class Person {
 
                                                 }
                                             }
+                                            */
                                         }else {
                                             x=Constants.RIGHT_START[0];
                                             y=Constants.RIGHT_START[1];
 
+                                            while (x>100){
+                                                changeX(-1);
+                                                try {
+                                                    Thread.sleep(100);
+                                                }catch (Exception ex){
+
+                                                }
+                                            }
+                                            /*
                                             while (x>Constants.LEFT_END[0]){
-                                                //incX(1200);
+                                                //changeX(1200);
                                                 x-= velocity;
                                                 try {
                                                     Thread.sleep(100);
@@ -197,19 +225,19 @@ public class Person {
 
                                                 }
                                             }
+                                            */
                                         }
                                         direction=(short)(-1*direction);
-                                        park();
+                                        //park();
                                         // critical section ends
                                         _want=false;
                                         sendACKtoALL();
 
                                     }
 
-
-
-                                }.run();
+                                }.start();
                             }
+
                         }
 
                     } catch (Exception e) {
@@ -222,9 +250,74 @@ public class Person {
 
     }
 
+    public void movePersonInCity(){
+
+        new Thread(){
+            @Override
+            public void run(){
+
+                while (true){
+
+                    if (!_want && !_in){
+
+                        if(x == 100 && y <390){
+
+                            if (y==130 ){
+
+                                direction=Constants.DIRECTION_LEFT;
+                                if( random.nextBoolean()){  //randomly deciding if the person wants to cross the bridge
+                                    sendReq();
+                                }else {
+                                    changeY(1);
+                                }
+
+
+                            }else {
+                                changeY(1);
+                            }
+
+                        }else if (x < 1020 && y == 390){
+
+                            changeX(1);
+
+                        }else if (x == 1020 && y >130){
+
+                            if(y==390){
+
+                                direction=Constants.DIRECTION_RIGHT;
+
+                                if(random.nextBoolean()){   //randomly deciding if the person wants to cross the bridge
+                                    sendReq();
+                                }else {
+                                    changeY(-1);
+                                }
+
+                            }else {
+                                changeY(-1);
+                            }
+
+                        }else if(x >100 && y == 130){
+
+                            changeX(-1);
+                        }
+                    }
+
+                    try {
+
+                        Thread.sleep(100);
+                    }catch (Exception ex){
+
+                    }
+                }
+            }
+        }.start();
+    }
+
     private void sendACKtoALL(){
+
         _in = false;
         N=0;
+
         for (int i=0;i<4;i++){
             if (A[i]){
                 //sendReq request
@@ -232,6 +325,8 @@ public class Person {
                 A[i]=false;
             }
         }
+
+
     }
     private void sendACK(int to_personID){
         //send ack to the specified person with id

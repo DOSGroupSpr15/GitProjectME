@@ -60,10 +60,20 @@ public class AnimationPanel extends JPanel{
             public void run() {
 
                 while(true){
+
                     /*
                     for(Person b: obj.person_list){
-                        b.incX(obj.getWidth());
-                        b.incY(obj.getHeight());
+
+                        if(b.x <= 100 && b.y <390){
+                            b.changeY(1);
+                        }else if (b.x < 1020 && b.y >= 390){
+                            b.changeX(1);
+                        }else if (b.x >= 1020 && b.y >130){
+                            b.changeY(-1);
+                        }else if(b.x >100 && b.y <= 130){
+                            b.changeX(-1);
+                        }
+
                     }
                     */
                     obj.repaint();
@@ -80,8 +90,8 @@ public class AnimationPanel extends JPanel{
         /*
         if(resume){
             for(Person b: person_list){
-                b.incX(this.getWidth());
-                b.incY(this.getHeight());
+                b.changeX(this.getWidth());
+                b.changeY(this.getHeight());
             }
             repaint();
         }

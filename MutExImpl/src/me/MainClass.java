@@ -2,6 +2,7 @@ package me;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by azhar on 3/15/15.
@@ -87,6 +88,8 @@ public class MainClass {
     */
 
         obj.move(true);
+
+
         /*
         while(true){
             obj.move(true);

@@ -21,7 +21,7 @@ public class Constants {
     public static final int ORANGE_PERSON=3;
 
     //listening ports for server sockets
-    public static final int[] LISTENING_PORTS= {8833,8835,8837,8839};
+    public static final int[] LISTENING_PORTS= {8733,8735,8737,8739};
     public static final String serverIP ="localHost";
 
     //person names
