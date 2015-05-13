@@ -152,7 +152,7 @@ public class Person {
 
                         Socket client= serverSocket.accept();
                         Message m = (Message) new ObjectInputStream(client.getInputStream()).readObject();
-                        System.out.println("Person "+Constants.PERSON_NAMES[id]+" got "+Constants.MESSAGE_TYPE[m.type]+" type message from Person "+Constants.PERSON_NAMES[m.sender]);
+                        System.out.println("Person "+Constants.PERSON_NAMES[id]+" got "+Constants.MESSAGE_TYPE[m.type]+" from Person "+Constants.PERSON_NAMES[m.sender]);
                         if((m.type==Constants.REQUEST)&&(!_want || m.time_stamp<t)){
                             sendACK(m.sender);
 
@@ -168,6 +168,7 @@ public class Person {
                                 new Thread(){
                                     @Override
                                     public void run(){
+
                                         _in = true;
                                         // critical section begins
                                         freeParkingSpot();
@@ -252,7 +253,7 @@ public class Person {
 
         }
         finally {
-            /*
+
             try {
                 client.close();
             }catch (Exception ex){
@@ -264,7 +265,7 @@ public class Person {
             }catch (Exception ex){
                 ex.printStackTrace();
             }
-            */
+
         }
 
     }
