@@ -163,6 +163,9 @@ public class Person {
                         if((m.type==Constants.REQUEST)&&(!_want || m.time_stamp<t)){
                             sendACK(m.sender);
 
+                        }else if (Constants.isConcurrent && (m.type==Constants.REQUEST) && (direction==AnimationPanel.person_list.get(m.sender).direction)){
+                            sendACK(m.sender);
+
                         }else if ((m.type==Constants.REQUEST)&&(_want && m.time_stamp>t)){
                             A[m.sender]=true;
 

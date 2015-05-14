@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class AnimationPanel extends JPanel{
 
-    ArrayList<Person> person_list;
+    static ArrayList<Person> person_list;
 
 
     AnimationPanel obj;
