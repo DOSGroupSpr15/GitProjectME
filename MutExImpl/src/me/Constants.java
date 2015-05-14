@@ -101,6 +101,7 @@ public class Constants {
 
     static final int BASE_VELOCITY =2;
     //BRIDGE MEASUREMENT CONSTANTS END HERE
+    static boolean isConcurrent=false;
 
 
 }

@@ -5,8 +5,6 @@
  */
 package me;
 
-import javax.tools.JavaCompiler;
-
 /**
  *
  * @author azhar
@@ -255,7 +253,26 @@ public class ControlPanel extends javax.swing.JFrame {
     private void jButton_OkMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         //System.out.println("Hello world!");
-        int index=jComboBox_Persons.getSelectedIndex();
+
+
+        if(!isOkClicked){
+            isOkClicked =true;
+            int index=jComboBox_modes.getSelectedIndex();
+            if (index==1){
+                writeToResultArea("Operating in concurrent mode!");
+                Constants.isConcurrent=true;
+            }
+            for (Person person:animationPanel.person_list){
+                person.receive();
+            }
+            for (Person person:animationPanel.person_list){
+                person.movePersonInCity();
+            }
+        }else {
+            writeToResultArea("To change Mode please restart program");
+        }
+
+        /*
         boolean canRequest=animationPanel.getPerson(index).sendReq();
 
         if (canRequest){
@@ -264,6 +281,7 @@ public class ControlPanel extends javax.swing.JFrame {
         }else {
             writeToResultArea("Request could not be scheduled for person "+Constants.PERSON_NAMES[index]);
         }
+        */
 
     }
     private void writeToResultArea(String result){
@@ -295,5 +313,6 @@ public class ControlPanel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider_Speed;
     private javax.swing.JTextArea jTextArea_Status;
-    // End of variables declaration                   
+    // End of variables declaration
+    private boolean isOkClicked =false;
 }

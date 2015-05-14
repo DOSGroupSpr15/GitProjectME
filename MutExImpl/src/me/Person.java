@@ -82,8 +82,8 @@ public class Person {
         N=0;
         myself=this;
 
-        receive();
-        movePersonInCity();
+        //receive();
+        //movePersonInCity();
 
     }
 
@@ -134,7 +134,7 @@ public class Person {
         _try=false;
         _want=true;
     }
-    private void receive(){
+    public void receive(){
 
         // implement the receiver thread here
         // need to call the method from the constructor
