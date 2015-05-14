@@ -89,24 +89,38 @@ public class Person {
 
     public void changeX(int sign){
 
-        x= x+ sign*velocity;
-        if(x<100)
+        int temp = x+ sign*velocity;
+        if (x>220 && temp<220){
+            x=220;
+        }else if (x<900 && temp>900){
+            x=900;
+        }else if (x>100 && temp<100){
             x=100;
-        else if (x>1020)
+        }else if(x<220 && temp>220){
+            x=220;
+        }else if (x<1020 && temp>1020){
             x=1020;
+        }else if (x>900 && temp<900){
+            x=900;
+        }else {
+            x=temp;
+        }
+
     }
 
     public void changeY(int sign){
 
-        y= y+ sign*velocity;
-
-        if (y<130)
+        int temp=y+ sign*velocity;
+        if ( y > 260 && temp < 260 ){
+            y=260;
+        }else if ( y > 130 && temp < 130){
             y=130;
-        else if (y>390)
+        }else if ( y<390 && temp>390){
             y=390;
+        }else {
+            y=temp;
+        }
     }
-
-
 
     public boolean sendReq(){
 
@@ -187,7 +201,7 @@ public class Person {
                                             x=Constants.LEFT_START[0];
                                             y=Constants.LEFT_START[1];
 
-                                            while (x<1020){
+                                            while (x<900){
                                                 changeX(1);
                                                 try {
                                                     Thread.sleep(100);
@@ -210,7 +224,7 @@ public class Person {
                                             x=Constants.RIGHT_START[0];
                                             y=Constants.RIGHT_START[1];
 
-                                            while (x>100){
+                                            while (x>220){
                                                 changeX(-1);
                                                 try {
                                                     Thread.sleep(100);
@@ -262,47 +276,60 @@ public class Person {
                 while (true){
 
                     if (!_want && !_in){
+                        if (direction==Constants.DIRECTION_LEFT){
+                            if(x == 100 && y <390){
 
-                        if(x == 100 && y <390){
-
-                            if (y==130 ){
-
-                                direction=Constants.DIRECTION_LEFT;
-                                if( random.nextBoolean()){  //randomly deciding if the person wants to cross the bridge
-                                    sendReq();
-                                }else {
-                                    changeY(1);
-                                }
-
-
-                            }else {
                                 changeY(1);
-                            }
 
-                        }else if (x < 1020 && y == 390){
+                            }else if (x < 220 && y == 390){
 
-                            changeX(1);
+                                changeX(1);
 
-                        }else if (x == 1020 && y >130){
+                            }else if (x == 220 && y > 130){
 
-                            if(y==390){
-
-                                direction=Constants.DIRECTION_RIGHT;
-
-                                if(random.nextBoolean()){   //randomly deciding if the person wants to cross the bridge
-                                    sendReq();
+                                if (y==260){
+                                    if( random.nextBoolean()){  //randomly deciding if the person wants to cross the bridge
+                                        sendReq();
+                                    }else {
+                                        changeY(-1);
+                                    }
                                 }else {
                                     changeY(-1);
                                 }
 
-                            }else {
-                                changeY(-1);
+                            }else if(x >100 && y == 130){
+
+                                changeX(-1);
                             }
 
-                        }else if(x >100 && y == 130){
+                        }else {
 
-                            changeX(-1);
+                            if(x == 900 && y >130){
+
+                                if (y==260){
+                                    if( random.nextBoolean()){  //randomly deciding if the person wants to cross the bridge
+                                        sendReq();
+                                    }else {
+                                        changeY(-1);
+                                    }
+                                }else {
+                                    changeY(-1);
+                                }
+
+                            }else if (x < 1020 && y == 130){
+
+                                changeX(1);
+
+                            }else if (x == 1020 && y < 390){
+
+                                changeY(1);
+
+                            }else if(x > 900  && y == 390){
+
+                                changeX(-1);
+                            }
                         }
+
                     }
 
                     try {

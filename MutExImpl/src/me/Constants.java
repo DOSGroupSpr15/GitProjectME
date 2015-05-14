@@ -84,10 +84,10 @@ public class Constants {
     //RIGHT PARKING BASE ENDS
 
     //START AND END POINTS OF THE BRIDGE
-    static int LEFT_START[]= {LEFT_PARKING_COORDINATES[2][0],300}; // starting position of a person starting from left end of the bridge
-    static int RIGHT_END[]={LEFT_START[0]+BRIDGE_LENGTH+80,300}; // ending position of a person starting from left side of the bride
-    static int RIGHT_START[]={RIGHT_END[0],RIGHT_END[1]-80}; // starting position of a person starting from right end of the bridge
-    static int LEFT_END[]={LEFT_START[0],LEFT_START[1]-80}; // ending position of a person starting from right side of the bride
+    static int LEFT_START[]= {300-80,300-40}; // starting position of a person starting from left end of the bridge
+    //static int RIGHT_END[]={LEFT_START[0]+BRIDGE_LENGTH+80,300}; // ending position of a person starting from left side of the bride
+    static int RIGHT_START[]={900,300-40}; // starting position of a person starting from right end of the bridge
+    //static int LEFT_END[]={LEFT_START[0],LEFT_START[1]-80}; // ending position of a person starting from right side of the bride
     //START AND END POINTS OF THE BRIDGE ENDS HERE
 
 

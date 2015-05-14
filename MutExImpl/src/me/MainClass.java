@@ -34,6 +34,7 @@ public class MainClass {
 
         //Person b_red=new Person(Constants.RED_PERSON,LEFT_PARKING_COORDINATES[2][0], LEFT_PARKING_COORDINATES[2][1], 80, Color.red, 5, 5,"R", Constants.DIRECTION_LEFT);
         Person b_red=new Person(Constants.RED_PERSON,Constants.LEFT_PARKING_COORDINATES[1][0], Constants.LEFT_PARKING_COORDINATES[1][1], 80, Color.red, "R", Constants.DIRECTION_LEFT,1);
+        //Person b_red=new Person(Constants.RED_PERSON,Constants.LEFT_START[0], Constants.LEFT_START[1], 80, Color.red, "R", Constants.DIRECTION_LEFT,1);
         Person b_blue=new Person(Constants.BLUE_PERSON,Constants.LEFT_PARKING_COORDINATES[0][0], Constants.LEFT_PARKING_COORDINATES[0][1], 80, Color.blue, "B", Constants.DIRECTION_LEFT,0);
 
 
@@ -42,6 +43,7 @@ public class MainClass {
 
         Person b_green=new Person(Constants.GREEN_PERSON,Constants.RIGHT_PARKING_COORDINATES[1][0], Constants.RIGHT_PARKING_COORDINATES[1][1], 80, Color.GREEN, "G", Constants.DIRECTION_RIGHT,1);
         Person b_orange=new Person(Constants.ORANGE_PERSON,Constants.RIGHT_PARKING_COORDINATES[0][0], Constants.RIGHT_PARKING_COORDINATES[0][1], 80, Color.ORANGE, "O", Constants.DIRECTION_RIGHT,0);
+        //Person b_orange=new Person(Constants.ORANGE_PERSON,Constants.RIGHT_START[0], Constants.RIGHT_START[1], 80, Color.ORANGE, "O", Constants.DIRECTION_RIGHT,0);
 
 
         obj.addPerson(b_red);

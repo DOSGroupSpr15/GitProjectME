@@ -33,8 +33,8 @@ public class AnimationPanel extends JPanel{
         int base_height=340;
 
         g2.drawLine(300,300,900,300);
-        g2.drawLine(300,300+lane_width,900,300+lane_width);
-        g2.drawLine(300,300-lane_width,900,300-lane_width);
+        //g2.drawLine(300,300+lane_width,900,300+lane_width);
+        //g2.drawLine(300,300-lane_width,900,300-lane_width);
 
         //left base of bridge
         g2.draw3DRect(300-base_width,300-base_height/2,base_width,base_height,false);
