@@ -255,33 +255,28 @@ public class ControlPanel extends javax.swing.JFrame {
         //System.out.println("Hello world!");
 
 
-        if(!isOkClicked){
+
+        if(!isOkClicked){ // once ok button is clicked the mode can not be changed
             isOkClicked =true;
+
+
             int index=jComboBox_modes.getSelectedIndex();
+            //selecting the operation mode
             if (index==1){
                 writeToResultArea("Operating in concurrent mode!");
                 Constants.isConcurrent=true;
             }
-            for (Person person:animationPanel.person_list){
+            for (Person person:animationPanel.person_list){ //starting the receiver thread
                 person.receive();
             }
-            for (Person person:animationPanel.person_list){
+            for (Person person:animationPanel.person_list){ // starting the request sender thread
                 person.movePersonInCity();
             }
         }else {
             writeToResultArea("To change Mode please restart program");
         }
 
-        /*
-        boolean canRequest=animationPanel.getPerson(index).sendReq();
 
-        if (canRequest){
-            writeToResultArea("Request has been scheduled for person "+Constants.PERSON_NAMES[index]);
-
-        }else {
-            writeToResultArea("Request could not be scheduled for person "+Constants.PERSON_NAMES[index]);
-        }
-        */
 
     }
     private void writeToResultArea(String result){

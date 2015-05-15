@@ -90,6 +90,8 @@ public class Person {
     public void changeX(int sign){
 
         int temp = x+ sign*velocity;
+
+        // checking all the boundary conditions to change the Y coordinates. If any of the boundary conditions applies, need to adjust it.
         if (x>220 && temp<220){
             x=220;
         }else if (x<900 && temp>900){
@@ -102,7 +104,7 @@ public class Person {
             x=1020;
         }else if (x>900 && temp<900){
             x=900;
-        }else {
+        }else { // if no boundary case applies, no need to adjust the coordinates. Just update the X coordinate with the newly calculated value
             x=temp;
         }
 
@@ -111,21 +113,20 @@ public class Person {
     public void changeY(int sign){
 
         int temp=y+ sign*velocity;
+
+        // checking all the boundary conditions to change the Y coordinates.  If any of the boundary conditions applies, need to adjust it.
         if ( y > 260 && temp < 260 ){
             y=260;
         }else if ( y > 130 && temp < 130){
             y=130;
         }else if ( y<390 && temp>390){
             y=390;
-        }else {
+        }else { // if no boundary case applies, no need to adjust the coordinates. Just update the Y coordinate with the newly calculated value
             y=temp;
         }
     }
 
     public boolean sendReq(){
-
-        //implement the sender
-
         if (_want || _in){
            return false;
         }else {
@@ -196,7 +197,7 @@ public class Person {
 
                                         _in = true;
                                         // critical section begins
-                                        //freeParkingSpot();
+
                                         if (direction==Constants.DIRECTION_LEFT){
                                             x=Constants.LEFT_START[0];
                                             y=Constants.LEFT_START[1];
@@ -209,17 +210,6 @@ public class Person {
 
                                                 }
                                             }
-                                            /*
-                                            while (x<Constants.RIGHT_END[0]){
-                                                //changeX(1200);
-                                                x+= velocity;
-                                                try {
-                                                    Thread.sleep(100);
-                                                }catch (Exception ex){
-
-                                                }
-                                            }
-                                            */
                                         }else {
                                             x=Constants.RIGHT_START[0];
                                             y=Constants.RIGHT_START[1];
@@ -232,20 +222,8 @@ public class Person {
 
                                                 }
                                             }
-                                            /*
-                                            while (x>Constants.LEFT_END[0]){
-                                                //changeX(1200);
-                                                x-= velocity;
-                                                try {
-                                                    Thread.sleep(100);
-                                                }catch (Exception ex){
-
-                                                }
-                                            }
-                                            */
                                         }
                                         direction=(short)(-1*direction);
-                                        //park();
                                         // critical section ends
                                         _want=false;
                                         sendACKtoALL();
@@ -287,8 +265,8 @@ public class Person {
 
                             }else if (x == 220 && y > 130){
 
-                                if (y==260){
-                                    if( random.nextBoolean()){  //randomly deciding if the person wants to cross the bridge
+                                if (y==260){    // this means person reached the right end of the bridge so it will request to cross bridge
+                                    if( random.nextBoolean()){  //randomly deciding if the person should send request to cross the bridge
                                         sendReq();
                                     }else {
                                         changeY(-1);
@@ -306,8 +284,8 @@ public class Person {
 
                             if(x == 900 && y >130){
 
-                                if (y==260){
-                                    if( random.nextBoolean()){  //randomly deciding if the person wants to cross the bridge
+                                if (y==260){ // this means person reached the right end of the bridge so it will request to cross bridge
+                                    if( random.nextBoolean()){  //randomly deciding if the person should send request to cross the bridge
                                         sendReq();
                                     }else {
                                         changeY(-1);
@@ -395,38 +373,6 @@ public class Person {
 
     }
 
-    private void freeParkingSpot(){
-        if(direction==Constants.DIRECTION_LEFT){
-            Constants.LEFT_PARKING_SPOTS[parking_spot]=false;
-        }else {
-            Constants.RIGHT_PARKING_SPOTS[parking_spot]=false;
-
-        }
-    }
-    private void park(){
-        if (direction==Constants.DIRECTION_LEFT){
-            for (int i=0;i<4;i++){
-                if (!Constants.LEFT_PARKING_SPOTS[i]){
-                    parking_spot=i;
-                    Constants.LEFT_PARKING_SPOTS[i]=true;
-                    x=Constants.LEFT_PARKING_COORDINATES[i][0];
-                    y=Constants.LEFT_PARKING_COORDINATES[i][1];
-                    break;
-                }
-            }
-        }else {
-            for (int i=0;i<4;i++){
-                if (!Constants.RIGHT_PARKING_SPOTS[i]){
-                    Constants.RIGHT_PARKING_SPOTS[i]=true;
-                    parking_spot=i;
-                    x=Constants.RIGHT_PARKING_COORDINATES[i][0];
-                    y=Constants.RIGHT_PARKING_COORDINATES[i][1];
-                    break;
-                }
-            }
-        }
-
-    }
     public void stopReceiving(){
         receiving=false;
     }

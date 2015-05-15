@@ -61,21 +61,7 @@ public class AnimationPanel extends JPanel{
 
                 while(true){
 
-                    /*
-                    for(Person b: obj.person_list){
-
-                        if(b.x <= 100 && b.y <390){
-                            b.changeY(1);
-                        }else if (b.x < 1020 && b.y >= 390){
-                            b.changeX(1);
-                        }else if (b.x >= 1020 && b.y >130){
-                            b.changeY(-1);
-                        }else if(b.x >100 && b.y <= 130){
-                            b.changeX(-1);
-                        }
-
-                    }
-                    */
+                    // repaint function calls the draw function and draws everything according to the new co-ordinates
                     obj.repaint();
 
                     try {
